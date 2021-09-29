@@ -34,12 +34,12 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.item_numbers -> {
+            R.id.item_0 -> {
                 val intent = Intent(this, NumbersGameActivity::class.java)
                 startActivity(intent)
                 return true
             }
-            R.id.item_phrase -> {
+            R.id.item_1 -> {
                 val intent = Intent(this, GuessThePhraseActivity::class.java)
                 startActivity(intent)
                 return true

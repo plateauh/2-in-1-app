@@ -3,6 +3,8 @@ package com.example.a2in1app
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 
 lateinit var numbers: Button
@@ -24,5 +26,25 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, GuessThePhraseActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.item_numbers -> {
+                val intent = Intent(this, NumbersGameActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+            R.id.item_phrase -> {
+                val intent = Intent(this, GuessThePhraseActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

@@ -15,10 +15,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import kotlin.random.Random
 
-lateinit var constraintLayout: ConstraintLayout
-lateinit var guessList: ArrayList<String>
+lateinit var numbersConstraintLayout: ConstraintLayout
+lateinit var numbersGuessList: ArrayList<String>
 lateinit var userGuess: EditText
-lateinit var recyclerView: RecyclerView
+lateinit var numbersRecyclerView: RecyclerView
 lateinit var btn: Button
 var numberOfGuesses = 3
 val random = Random.nextInt(11)
@@ -28,45 +28,45 @@ class NumbersGameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_numbers_game)
 
-        guessList = arrayListOf()
+        numbersGuessList = arrayListOf()
 
-        constraintLayout = findViewById(R.id.cl)
+        numbersConstraintLayout = findViewById(R.id.cl)
         userGuess = findViewById(R.id.etNumGuessed)
         btn = findViewById(R.id.guessBtn)
         btn.setOnClickListener{
             check()
-            updateRecyclerView()
+            updatenumbersRecyclerView()
         }
     }
 
     private fun check(){
 
         if (userGuess.text.isEmpty()){
-            Snackbar.make(constraintLayout, "You must enter a number", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(numbersConstraintLayout, "You must enter a number", Snackbar.LENGTH_SHORT).show()
             return
         }
 
         val guessToInt = userGuess.text.toString().toInt()
         if (random == guessToInt){
-            guessList.add("That's right! it is $random")
+            numbersGuessList.add("That's right! it is $random")
             customAlert()
         }
         else {
             var plural = "guesses"
             if (--numberOfGuesses == 1) plural = "guess"
-            guessList.add("You guessed $guessToInt\nYou have $numberOfGuesses $plural left")
+            numbersGuessList.add("You guessed $guessToInt\nYou have $numberOfGuesses $plural left")
         }
         if (numberOfGuesses == 0) {
-            guessList.add("The number was $random")
+            numbersGuessList.add("The number was $random")
             customAlert()
         }
         userGuess.setText("")
     }
 
-    private fun updateRecyclerView(){
-        recyclerView = findViewById(R.id.rvGuesses)
-        recyclerView.adapter = RecyclerViewAdapter(guessList)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+    private fun updatenumbersRecyclerView(){
+        numbersRecyclerView = findViewById(R.id.rvGuesses)
+        numbersRecyclerView.adapter = RecyclerViewAdapter(numbersGuessList)
+        numbersRecyclerView.layoutManager = LinearLayoutManager(this)
     }
 
     private fun customAlert(){

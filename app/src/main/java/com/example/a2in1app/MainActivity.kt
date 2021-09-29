@@ -8,7 +8,7 @@ import android.view.MenuItem
 import android.widget.Button
 
 lateinit var numbers: Button
-lateinit var phrase: Button
+lateinit var phraseButton: Button
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,8 +21,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        phrase = findViewById(R.id.phraseBtn)
-        phrase.setOnClickListener {
+        phraseButton = findViewById(R.id.phraseBtn)
+        phraseButton.setOnClickListener {
             val intent = Intent(this, GuessThePhraseActivity::class.java)
             startActivity(intent)
         }
